@@ -12,6 +12,10 @@
   width: 35px !important;
 }
 
+.chat:hover {
+  opacity: 0.8;
+}
+
 .chat__readIcon {
   color: #ed3b55;
 }
