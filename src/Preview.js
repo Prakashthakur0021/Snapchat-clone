@@ -5,7 +5,9 @@ import { useHistory } from 'react-router-dom'
 import { resetCameraImage, selectCameraImage } from './features/cameraSlice'
 import './Preview.css'
 import {v4 as uuid} from "uuid";
-import { storage} from 'firebase'
+import { storage} from './firebase'
+import { db } from './firebase'
+import firebase from 'firebase'
 
 function Preview() {
     const cameraImage = useSelector(selectCameraImage)
@@ -24,6 +26,30 @@ function Preview() {
 
     const sendPost = () => {
         const id = uuid();
+        const uploadTask = storage
+                .ref(`posts/${id}`)
+                .putString(cameraImage, "data_url");
+
+        uploadTask.on("state_changed", null, (error) => {
+            // Error
+            console.log(error);
+        },
+        () => {
+            // COMPLETE Function
+            storage.ref('posts')
+                .child(id)
+                .getDownloadURL()
+                .then( (url) => {
+                    db.collection('posts').add({
+                        imageUrl : url,
+                        username: "Prakash",
+                        read: false,
+                        //profilePic,
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                        })
+                    history.replace('/chats');
+                })
+        }) 
     }
 
     return (
