@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 
 const videoConstraints = {
     width: 250,
-    height: 400,
+    height: 440,
     facingMode: 'user',
 }
 

@@ -6,3 +6,22 @@
   background-color: #fefc01;
   height: 100vh;
 }
+
+.app__logo {
+  object-fit: contain;
+  height: 100px;
+}
+
+.app__body {
+  background: url('https://www.pngkey.com/png/full/68-683204_iphone-6s-plus-black-glass-lens-screen-frame.png')
+    no-repeat center;
+  background-size: contain;
+  height: 435px;
+  width: 250px;
+  padding: 60px;
+}
+
+.app__bodyBackground {
+  background-color: white;
+  height: 435px;
+}
